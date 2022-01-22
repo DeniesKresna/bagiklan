@@ -20,9 +20,6 @@ import { changeSearch, changeData, changeRow, getData, deleteRow } from './actio
 import reducer from './reducer';
 import saga from './saga';
 
-import { normalizeData } from '../../utils/helpers';
-import CommonTable from '../../components/CommonTable';
-
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -134,36 +131,7 @@ export function UnitPage({ data, search, onGetData, onChangeSearch, onChangeData
       </Helmet>
       <h1>Pengaturan {entity}</h1>
 
-      <CommonTable
-        search={search}
-        tableData={tableData}
-        canBeUpdate={false}
-        canBeDelete={true}
-        onChangeSearch={changeSearch}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-        onChangePage={handleChangePage}
-        onOperationClick={handleClickOperation}
-        columns={columnViewed} />
-
-      <Dialog open={dialogStatus} onClose={()=>{handleCloseDialog('cancel')}} maxWidth='lg' fullWidth={true} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">{formLabel()}</DialogTitle>
-        <DialogContent>
-        <FormBuilder
-          fields={formComponents()}
-          form={form}
-          updateForm={(key, value) => updateForm(key, value)}
-        />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={()=>{handleCloseDialog('cancel')}} color="secondary">
-            Tutup
-          </Button>
-          {entityMode != 'show' && <Button onClick={()=>{handleCloseDialog('submit')}} color="primary">
-            Simpan
-          </Button>}
-        </DialogActions>
-      </Dialog>
-
+      
     </div>
   );
 }

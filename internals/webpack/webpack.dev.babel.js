@@ -5,6 +5,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 
 module.exports = require('./webpack.base.babel')({
@@ -40,6 +41,32 @@ module.exports = require('./webpack.base.babel')({
       exclude: /a\.js|node_modules/, // exclude node_modules
       failOnError: false, // show a warning when there is a circular dependency
     }),
+    new AddAssetHtmlPlugin([
+      { filepath: require.resolve('../../app/assets/plugins/jquery/jquery.min.js') },
+      { filepath: require.resolve('../../app/assets/plugins/jquery-ui/jquery-ui.min.js') },
+      { filepath: require.resolve('../../app/assets/plugins/bootstrap/js/bootstrap.bundle.min.js') },
+      { filepath: require.resolve('../../app/assets/plugins/bootstrap/js/bootstrap.bundle.min.js') },
+      { filepath: require.resolve('../../app/assets/plugins/chart.js/Chart.min.js') },
+      { filepath: require.resolve('../../app/assets/plugins/sparklines/sparkline.js') },
+      { filepath: require.resolve('../../app/assets/plugins/jqvmap/jquery.vmap.min.js') },
+      { filepath: require.resolve('../../app/assets/plugins/jqvmap/maps/jquery.vmap.usa.js') },
+      { filepath: require.resolve('../../app/assets/plugins/jquery-knob/jquery.knob.min.js') },
+      { filepath: require.resolve('../../app/assets/plugins/moment/moment.min.js') },
+      { filepath: require.resolve('../../app/assets/plugins/daterangepicker/daterangepicker.js') },
+      { filepath: require.resolve('../../app/assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') },
+      { filepath: require.resolve('../../app/assets/plugins/summernote/summernote-bs4.min.js') },
+      { filepath: require.resolve('../../app/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') },
+      { filepath: require.resolve('../../app/assets/dist/js/adminlte.js') },
+      { filepath: require.resolve('../../app/assets/dist/js/pages/dashboard.js') },
+      { filepath: require.resolve('../../app/assets/plugins/fontawesome-free/css/all.min.css'), typeOfAsset: 'css' },
+      { filepath: require.resolve('../../app/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css'), typeOfAsset: 'css' },
+      { filepath: require.resolve('../../app/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css'), typeOfAsset: 'css' },
+      { filepath: require.resolve('../../app/assets/plugins/jqvmap/jqvmap.min.css'), typeOfAsset: 'css' },
+      { filepath: require.resolve('../../app/assets/dist/css/adminlte.min.css'), typeOfAsset: 'css' },
+      { filepath: require.resolve('../../app/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'), typeOfAsset: 'css' },
+      { filepath: require.resolve('../../app/assets/plugins/daterangepicker/daterangepicker.css'), typeOfAsset: 'css' },
+      { filepath: require.resolve('../../app/assets/plugins/summernote/summernote-bs4.min.css'), typeOfAsset: 'css' },
+    ]),
   ],
 
   // Emit a source map for easier debugging
